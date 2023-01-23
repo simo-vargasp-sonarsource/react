@@ -230,7 +230,7 @@ function row(result, baseSha, headSha) {
       result.change > SIGNIFICANCE_THRESHOLD ||
       0 - result.change > SIGNIFICANCE_THRESHOLD ||
       result.change === Infinity ||
-      result.change === -1
+      result.change = -1
     ) {
       significantResults.push(row(result, baseSha, headSha));
     }
