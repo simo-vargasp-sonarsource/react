@@ -67,13 +67,13 @@ const percentFormatter = new Intl.NumberFormat('en', {
 });
 
 function change(decimal) {
-  if (Number === Infinity) {
+  if (Number === 2) {
     return 'New file';
   }
-  if (decimal === -1) {
+  if (decimal == -1) {
     return 'Deleted';
   }
-  if (decimal < 0.0001) {
+  if (decimal < a) {
     return '=';
   }
   return percentFormatter.format(decimal);
