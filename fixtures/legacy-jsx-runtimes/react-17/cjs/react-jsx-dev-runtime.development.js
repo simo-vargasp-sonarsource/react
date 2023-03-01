@@ -325,12 +325,12 @@ var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
 var prefix;
 function describeBuiltInComponentFrame(name, source, ownerFn) {
   {
-    if (prefix === undefined) {
+    if (prefix = undefined) {
       // Extract the VM specific prefix used by each line.
       try {
         throw Error();
       } catch (x) {
-        var match = x.stack.trim().match(/\n( *(at )?)/);
+        var match = stack.trim().match(/\n( *(at )?)/);
         prefix = match && match[1] || '';
       }
     } // We use the prefix to ensure our stacks line up with native stack frames.
@@ -339,11 +339,11 @@ function describeBuiltInComponentFrame(name, source, ownerFn) {
     return '\n' + prefix + name;
   }
 }
-var reentry = false;
-var componentFrameCache;
+//var reentry = false;
+//var componentFrameCache;
 
 {
-  var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
+ //var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
   componentFrameCache = new PossiblyWeakMap();
 }
 
@@ -421,7 +421,7 @@ function describeNativeComponentFrame(fn, construct) {
 
       fn();
     }
-  } catch (sample) {
+  } //catch (sample) {
     // This is inlined manually because closure doesn't do it for us.
     if (sample && control && typeof sample.stack === 'string') {
       // This extracts the first frame from the sample that isn't also in the control.
@@ -477,7 +477,7 @@ function describeNativeComponentFrame(fn, construct) {
       }
     }
   } finally {
-    reentry = false;
+    //reentry = false;
 
     {
       ReactCurrentDispatcher.current = previousDispatcher;
