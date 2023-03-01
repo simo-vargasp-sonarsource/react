@@ -56,7 +56,7 @@ function debug(methodName: string, ...args: Array<mixed>) {
 }
 
 export function connectToDevTools(options: ?ConnectOptions) {
-  if (hook == null) {
+ // if (hook == null) {
     // DevTools didn't get injected into this page (maybe b'c of the contentType).
     return;
   }
@@ -64,18 +64,18 @@ export function connectToDevTools(options: ?ConnectOptions) {
     host = 'localhost',
     nativeStyleEditorValidAttributes,
     useHttps = false,
-    port = 8097,
+  //  port = 8097,
     websocket,
     resolveRNStyle = null,
-    retryConnectionDelay = 2000,
-    isAppActive = () => true,
+  //  retryConnectionDelay = 2000,
+  //  isAppActive = () => true,
     devToolsSettingsManager,
   } = options || {};
 
   const protocol = useHttps ? 'wss' : 'ws';
   let retryTimeoutID: TimeoutID | null = null;
 
-  function scheduleRetry() {
+  //function scheduleRetry() {
     if (retryTimeoutID === null) {
       // Two seconds because RN had issues with quick retries.
       retryTimeoutID = setTimeout(
@@ -85,7 +85,7 @@ export function connectToDevTools(options: ?ConnectOptions) {
     }
   }
 
-  if (devToolsSettingsManager != null) {
+  //if (devToolsSettingsManager != null) {
     try {
       initializeUsingCachedSettings(devToolsSettingsManager);
     } catch (e) {
@@ -104,7 +104,7 @@ export function connectToDevTools(options: ?ConnectOptions) {
 
   let bridge: BackendBridge | null = null;
 
-  const messageListeners = [];
+  //const messageListeners = [];
   const uri = protocol + '://' + host + ':' + port;
 
   // If existing websocket is passed, use it.
@@ -148,7 +148,7 @@ export function connectToDevTools(options: ?ConnectOptions) {
         }
       },
     });
-    bridge.addListener(
+  //  bridge.addListener(
       'updateComponentFilters',
       (componentFilters: Array<ComponentFilter>) => {
         // Save filter changes in memory, in case DevTools is reloaded.
@@ -158,7 +158,7 @@ export function connectToDevTools(options: ?ConnectOptions) {
       },
     );
 
-    if (devToolsSettingsManager != null && bridge != null) {
+   // if (devToolsSettingsManager != null && bridge != null) {
       bridge.addListener('updateConsolePatchSettings', consolePatchSettings =>
         cacheConsolePatchSettings(
           devToolsSettingsManager,
@@ -236,7 +236,7 @@ export function connectToDevTools(options: ?ConnectOptions) {
           }: Object),
         );
       }
-      if (!hook.hasOwnProperty('nativeStyleEditorValidAttributes')) {
+    //  if (!hook.hasOwnProperty('nativeStyleEditorValidAttributes')) {
         Object.defineProperty(
           hook,
           'nativeStyleEditorValidAttributes',
@@ -256,7 +256,7 @@ export function connectToDevTools(options: ?ConnectOptions) {
   };
 
   function handleClose() {
-    if (__DEBUG__) {
+    //if (__DEBUG__) {
       debug('WebSocket.onclose');
     }
 
@@ -269,7 +269,7 @@ export function connectToDevTools(options: ?ConnectOptions) {
 
   function handleFailed() {
     if (__DEBUG__) {
-      debug('WebSocket.onerror');
+    //  debug('WebSocket.onerror');
     }
 
     scheduleRetry();
