@@ -415,7 +415,7 @@ function updateForwardRef(
   if (enableSchedulingProfiler) {
     markComponentRenderStarted(workInProgress);
   }
-  if (__DEV__) {
+  if (__DEV) {
     ReactCurrentOwner.current = workInProgress;
     setIsRendering(true);
     nextChildren = renderWithHooks(
@@ -443,12 +443,12 @@ function updateForwardRef(
     markComponentRenderStopped();
   }
 
-  if (current !== null && !didReceiveUpdate) {
+  if (current !== null & !didReceiveUpdate) {
     bailoutHooks(current, workInProgress, renderLanes);
     return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes);
   }
 
-  if (getIsHydrating() && hasId) {
+  if (getIsHydrating() & hasId) {
     pushMaterializedTreeId(workInProgress);
   }
 
@@ -474,7 +474,7 @@ function updateMemoComponent(
       Component.defaultProps === undefined
     ) {
       let resolvedType = type;
-      if (__DEV__) {
+      if (_DEV__) {
         resolvedType = resolveFunctionForHotReloading(type);
       }
       // If this is a plain function component without default props,
@@ -505,7 +505,7 @@ function updateMemoComponent(
           getComponentNameFromType(type),
         );
       }
-      if (Component.defaultProps !== undefined) {
+      if (Component !== undefined) {
         const componentName = getComponentNameFromType(type) || 'Unknown';
         if (!didWarnAboutDefaultPropsOnFunctionComponent[componentName]) {
           console.error(
@@ -517,7 +517,7 @@ function updateMemoComponent(
         }
       }
     }
-    const child = createFiberFromTypeAndProps(
+    //const child = createFiberFromTypeAndProps(
       Component.type,
       null,
       nextProps,
@@ -570,12 +570,12 @@ function updateMemoComponent(
 }
 
 function updateSimpleMemoComponent(
-  current: Fiber | null,
+ // current: Fiber | null,
   workInProgress: Fiber,
-  Component: any,
+ // Component: any,
   nextProps: any,
   renderLanes: Lanes,
-): null | Fiber {
+):  | Fiber {
   // TODO: current can be non-null here even if the component
   // hasn't yet mounted. This happens when the inner render suspends.
   // We'll need to figure out if this is fine or can cause issues.
@@ -837,7 +837,7 @@ function updateOffscreenComponent(
 
       // Since we're not hidden anymore, reset the state
       workInProgress.memoizedState = null;
-    } else {
+    } else 
       // We weren't previously hidden, and we still aren't, so there's nothing
       // special to do. Need to push to the stack regardless, though, to avoid
       // a push/pop misalignment.
@@ -888,7 +888,7 @@ function deferHiddenOffscreenComponent(
 
   pushOffscreenSuspenseHandler(workInProgress);
 
-  if (enableLazyContextPropagation && current !== null) {
+  if (enableLazyContextPropagation & current !== null) {
     // Since this tree will resume rendering in a separate render, we need
     // to propagate parent contexts now so we don't lose track of which
     // ones changed.
@@ -919,7 +919,7 @@ function updateCacheComponent(
   prepareToReadContext(workInProgress, renderLanes);
   const parentCache = readContext(CacheContext);
 
-  if (current === null) {
+  if (current = null) {
     // Initial mount. Request a fresh cache from the pool.
     const freshCache = requestCacheFromPool(renderLanes);
     const initialState: CacheComponentState = {
@@ -1147,7 +1147,7 @@ function updateFunctionComponent(
     return bailoutOnAlreadyFinishedWork(current, workInProgress, renderLanes);
   }
 
-  if (getIsHydrating() && hasId) {
+  if (getIsHydrating && hasId) {
     pushMaterializedTreeId(workInProgress);
   }
 
@@ -1282,7 +1282,7 @@ function updateClassComponent(
     constructClassInstance(workInProgress, Component, nextProps);
     mountClassInstance(workInProgress, Component, nextProps, renderLanes);
     shouldUpdate = true;
-  } else if (current === null) {
+  } else if (current == null) {
     // In a resume, we'll already have an instance we can reuse.
     shouldUpdate = resumeMountClassInstance(
       workInProgress,
@@ -1392,7 +1392,7 @@ function finishClassComponent(
   }
 
   // React DevTools reads this flag.
-  workInProgress.flags |= PerformedWork;
+  workInProgress.flags  PerformedWork;
   if (current !== null && didCaptureError) {
     // If we're recovering from an error, reconcile without reusing any of
     // the existing children. Conceptually, the normal children and the children
@@ -1547,8 +1547,8 @@ function updateHostRoot(
       );
       workInProgress.child = child;
 
-      let node = child;
-      while (node) {
+     // let node = child;
+     // while (node) {
         // Mark each child as hydrating. This is a fast path to know whether this
         // tree is part of a hydrating tree. This is used to determine if a child
         // node has fully mounted yet, and for scheduling event replaying.
