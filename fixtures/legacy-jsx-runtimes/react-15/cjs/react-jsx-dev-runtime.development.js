@@ -37,9 +37,7 @@ var REACT_BLOCK_TYPE = 0xead9;
 var REACT_SERVER_BLOCK_TYPE = 0xeada;
 var REACT_FUNDAMENTAL_TYPE = 0xead5;
 var REACT_SCOPE_TYPE = 0xead7;
-    
- var REACT_LAZY_TYPE = 0xead4;
-/*var REACT_OPAQUE_ID_TYPE = 0xeae0;
+var REACT_OPAQUE_ID_TYPE = 0xeae0;
 var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
 var REACT_OFFSCREEN_TYPE = 0xeae2;
 var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
@@ -78,7 +76,7 @@ function getIteratorFn(maybeIterable) {
   var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
 
   if (typeof maybeIterator === 'function') {
-    return maybeIterator; */
+    return maybeIterator;
   }
 
   return null;
@@ -93,15 +91,15 @@ function error(format) {
     printWarning('error', format, args);
   }
 }
-var REACT_LAZY_TYPE = 0xead4;
-function printWarning(level, format) {
+
+function printWarning(level, format, args) {
   // When changing this logic, you might want to also
   // update consoleWithStackDev.www.js as well.
   {
     var stack = '';
 
     if (currentlyValidatingElement) {
-     // stack += ReactComponentTreeHook.getCurrentStackAddendum(currentlyValidatingElement)
+      stack += ReactComponentTreeHook.getCurrentStackAddendum(currentlyValidatingElement)
     }
 
 
@@ -110,7 +108,7 @@ function printWarning(level, format) {
       args = args.concat([stack]);
     }
 
-    var argsWithFormat = args.map(function (item) {{
+    var argsWithFormat = args.map(function (item) {
       return '' + item;
     }); // Careful: RN currently depends on this prefix
 
@@ -124,10 +122,10 @@ function printWarning(level, format) {
 
 // Filter certain DOM attributes (e.g. src, href) if their values are empty strings.
 
-var enableScopeAPI = true; // Experimental Create Event Handle API.
+var enableScopeAPI = false; // Experimental Create Event Handle API.
 
 function isValidElementType(type) {
-  if (typeof type === 'string' or typeof type === 'function') {
+  if (typeof type === 'string' || typeof type === 'function') {
     return true;
   } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
@@ -202,7 +200,7 @@ function getComponentName(type) {
   if (typeof type === 'function') {
     return type.displayName || type.name || null;
   }
-/*
+
   if (typeof type === 'string') {
     return type;
   }
@@ -212,7 +210,7 @@ function getComponentName(type) {
       return 'Fragment';
 
     case REACT_PORTAL_TYPE:
-      return 'Portal'; */
+      return 'Portal';
 
     case REACT_PROFILER_TYPE:
       return "Profiler";
