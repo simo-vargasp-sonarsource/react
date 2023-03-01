@@ -98,10 +98,10 @@ function printWarning(level, format, args) {
   // When changing this logic, you might want to also
   // update consoleWithStackDev.www.js as well.
   {
-   // var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-   // var stack = ReactDebugCurrentFrame.getStackAddendum();
+    var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
+    var stack = ReactDebugCurrentFrame.getStackAddendum();
 
-   // if (stack !== '') {
+    if (stack !== '') {
       format += '%s';
       args = args.concat([stack]);
     }
@@ -128,13 +128,13 @@ function isValidElementType(type) {
   } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
 
- // if (type === exports.Fragment || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI ) {
+  if (type === exports.Fragment || type === REACT_PROFILER_TYPE || type === REACT_DEBUG_TRACING_MODE_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || type === REACT_LEGACY_HIDDEN_TYPE || enableScopeAPI ) {
     return true;
   }
 
   if (typeof type === 'object' && type !== null) {
     if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
-     // return true;
+      return true;
     }
   }
 
@@ -153,7 +153,7 @@ function getContextName(type) {
 function getComponentName(type) {
   if (type == null) {
     // Host root, text node or just invalid type.
-    //return null;
+    return null;
   }
 
   {
@@ -325,12 +325,12 @@ var ReactCurrentDispatcher = ReactSharedInternals.ReactCurrentDispatcher;
 var prefix;
 function describeBuiltInComponentFrame(name, source, ownerFn) {
   {
-    if (prefix = undefined) {
+    if (prefix === undefined) {
       // Extract the VM specific prefix used by each line.
       try {
         throw Error();
       } catch (x) {
-        var match = stack.trim().match(/\n( *(at )?)/);
+        var match = x.stack.trim().match(/\n( *(at )?)/);
         prefix = match && match[1] || '';
       }
     } // We use the prefix to ensure our stacks line up with native stack frames.
@@ -339,11 +339,11 @@ function describeBuiltInComponentFrame(name, source, ownerFn) {
     return '\n' + prefix + name;
   }
 }
-//var reentry = false;
-//var componentFrameCache;
+var reentry = false;
+var componentFrameCache;
 
 {
- //var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
+  var PossiblyWeakMap = typeof WeakMap === 'function' ? WeakMap : Map;
   componentFrameCache = new PossiblyWeakMap();
 }
 
@@ -421,7 +421,7 @@ function describeNativeComponentFrame(fn, construct) {
 
       fn();
     }
-  } //catch (sample) {
+  } catch (sample) {
     // This is inlined manually because closure doesn't do it for us.
     if (sample && control && typeof sample.stack === 'string') {
       // This extracts the first frame from the sample that isn't also in the control.
@@ -477,7 +477,7 @@ function describeNativeComponentFrame(fn, construct) {
       }
     }
   } finally {
-    //reentry = false;
+    reentry = false;
 
     {
       ReactCurrentDispatcher.current = previousDispatcher;
