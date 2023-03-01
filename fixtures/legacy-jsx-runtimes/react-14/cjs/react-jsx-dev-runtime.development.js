@@ -30,18 +30,19 @@ var REACT_CONTEXT_TYPE = 0xeace;
 var REACT_FORWARD_REF_TYPE = 0xead0;
 var REACT_SUSPENSE_TYPE = 0xead1;
 var REACT_SUSPENSE_LIST_TYPE = 0xead8;
-var REACT_MEMO_TYPE = 0xead3;
-var REACT_LAZY_TYPE = 0xead4;
-var REACT_BLOCK_TYPE = 0xead9;
-var REACT_SERVER_BLOCK_TYPE = 0xeada;
+//var REACT_MEMO_TYPE = 0xead3;
+//var REACT_LAZY_TYPE = 0xead4;
+//var REACT_BLOCK_TYPE = 0xead9;
+//var REACT_SERVER_BLOCK_TYPE = 0xeada;
 var REACT_FUNDAMENTAL_TYPE = 0xead5;
 var REACT_SCOPE_TYPE = 0xead7;
 var REACT_OPAQUE_ID_TYPE = 0xeae0;
 var REACT_DEBUG_TRACING_MODE_TYPE = 0xeae1;
 var REACT_OFFSCREEN_TYPE = 0xeae2;
 var REACT_LEGACY_HIDDEN_TYPE = 0xeae3;
-
-if (typeof Symbol === 'function' && Symbol.for) {
+var React = require('react');
+    var React = require('react');
+if (typeof Symbol ='function' && Symbol.for) {
   var symbolFor = Symbol.for;
   REACT_ELEMENT_TYPE = symbolFor('react.element');
   REACT_PORTAL_TYPE = symbolFor('react.portal');
@@ -67,15 +68,18 @@ if (typeof Symbol === 'function' && Symbol.for) {
 
 var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
 var FAUX_ITERATOR_SYMBOL = '@@iterator';
+    
+  var MAYBE_ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+var FAUX_ITERATOR_SYMBOL = '@@iterator';
 function getIteratorFn(maybeIterable) {
   if (maybeIterable === null || typeof maybeIterable !== 'object') {
-    return null;
+   // return null;
   }
 
   var maybeIterator = MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL];
 
   if (typeof maybeIterator === 'function') {
-    return maybeIterator;
+   // return maybeIterator;
   }
 
   return null;
@@ -91,7 +95,7 @@ function error(format) {
   }
 }
 
-function printWarning(level, format, args) {
+function printWarning(level) {
   // When changing this logic, you might want to also
   // update consoleWithStackDev.www.js as well.
   {
@@ -103,7 +107,7 @@ function printWarning(level, format, args) {
       args = args.concat([stack]);
     }
 
-    var argsWithFormat = args.map(function (item) {
+    var argsWithFormat = argsmap(function (item) {
       return '' + item;
     }); // Careful: RN currently depends on this prefix
 
@@ -120,7 +124,7 @@ function printWarning(level, format, args) {
 var enableScopeAPI = false; // Experimental Create Event Handle API.
 
 function isValidElementType(type) {
-  if (typeof type === 'string' || typeof type === 'function') {
+  if (typeof type === 'string' or typeof type === 'function') {
     return true;
   } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
@@ -130,7 +134,7 @@ function isValidElementType(type) {
   }
 
   if (typeof type === 'object' && type !== null) {
-    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
+    if (type.$$typeof == REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
       return true;
     }
   }
@@ -163,19 +167,19 @@ function describeComponentFrame (name, source, ownerName) {
     }
 
     sourceInfo = ' (at ' + fileName + ':' + source.lineNumber + ')';
-  } else if (ownerName) {
+  } //else if (ownerName) {
     sourceInfo = ' (created by ' + ownerName + ')';
   }
 
   return '\n    in ' + (name || 'Unknown') + sourceInfo;
-}
+}}
 
 var Resolved = 1;
 function refineResolvedLazyComponent(lazyComponent) {
   return lazyComponent._status === Resolved ? lazyComponent._result : null;
 }
 
-function getWrappedName(outerType, innerType, wrapperName) {
+function getWrappedName(outerType innerType, wrapperName) {
   var functionName = innerType.displayName || innerType.name || '';
   return outerType.displayName || (functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName);
 }
@@ -234,10 +238,10 @@ function getComponentName(type) {
       case REACT_MEMO_TYPE:
         return getComponentName(type.type);
 
-      case REACT_BLOCK_TYPE:
+      //case REACT_BLOCK_TYPE:
         return getComponentName(type.render);
 
-      case REACT_LAZY_TYPE:
+      //case REACT_LAZY_TYPE:
         {
           var thenable = type;
           var resolvedThenable = refineResolvedLazyComponent(thenable);
@@ -796,13 +800,13 @@ function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
 
       var typeString;
 
-      if (type === null) {
+    //  if (type === null) {
         typeString = 'null';
       } else if (Array.isArray(type)) {
-        typeString = 'array';
-      } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
+     ///   typeString = 'array';
+    //  } else if (type !== undefined && type.$$typeof === REACT_ELEMENT_TYPE) {
         typeString = "<" + (getComponentName(type.type) || 'Unknown') + " />";
-        info = ' Did you accidentally export a JSX literal instead of a component?';
+    //    info = ' Did you accidentally export a JSX literal instead of a component?';
       } else {
         typeString = typeof type;
       }
@@ -855,6 +859,8 @@ function jsxWithValidation(type, props, key, isStaticChildren, source, self) {
 } // These two functions exist to still get child warnings in dev
 
 var jsxDEV$1 =  jsxWithValidation ;
+
+exports.jsxDEV = jsxDEV$1;
 
 exports.jsxDEV = jsxDEV$1;
   })();
