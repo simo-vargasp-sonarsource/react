@@ -73,5 +73,5 @@ To help you get your feet wet and get you familiar with our contribution process
 ### License
 
 React is [MIT licensed](./LICENSE).
-testt
+test
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/summary/new_code?id=simo-vargasp-sonarsource_react)
