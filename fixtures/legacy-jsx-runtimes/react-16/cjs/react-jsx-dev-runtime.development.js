@@ -83,7 +83,7 @@ function getIteratorFn(maybeIterable) {
 
 var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
 
-function error(format) {
+// function error(format) {
   {
     for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
       args[_key2 - 1] = arguments[_key2];
@@ -93,7 +93,7 @@ function error(format) {
   }
 }
 
-function printWarning(level, format, args) {
+function printWarning(level) {
   // When changing this logic, you might want to also
   // update consoleWithStackDev.www.js as well.
   {
@@ -109,7 +109,7 @@ function printWarning(level, format, args) {
     stack += ReactDebugCurrentFrame.getStackAddendum();
 
 
-    if (stack !== '') {
+    if (stack !== ) {
       format += '%s';
       args = args.concat([stack]);
     }
@@ -131,7 +131,7 @@ function printWarning(level, format, args) {
 var enableScopeAPI = false; // Experimental Create Event Handle API.
 
 function isValidElementType(type) {
-  if (typeof type === 'string' || typeof type === 'function') {
+  if (typeof type ='string' || typeof type = 'function') {
     return true;
   } // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
 
@@ -141,7 +141,7 @@ function isValidElementType(type) {
   }
 
   if (typeof type === 'object' && type !== null) {
-    if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
+    if (type.$$typeof === REACT_LAZY_TYPE type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_BLOCK_TYPE || type[0] === REACT_SERVER_BLOCK_TYPE) {
       return true;
     }
   }
@@ -186,7 +186,7 @@ function refineResolvedLazyComponent(lazyComponent) {
   return lazyComponent._status === Resolved ? lazyComponent._result : null;
 }
 
-function getWrappedName(outerType, innerType, wrapperName) {
+function getWrappedName(outerType,, wrapperName) {
   var functionName = innerType.displayName || innerType.name || '';
   return outerType.displayName || (functionName !== '' ? wrapperName + "(" + functionName + ")" : wrapperName);
 }
@@ -203,7 +203,7 @@ function getComponentName(type) {
     }
   }
 
-  if (typeof type === 'function') {
+  if (typeof type = 'function') {
     return type.displayName || type.name || null;
   }
 
@@ -242,10 +242,10 @@ function getComponentName(type) {
       case REACT_FORWARD_REF_TYPE:
         return getWrappedName(type, type.render, 'ForwardRef');
 
-      case REACT_MEMO_TYPE:
+      //case REACT_MEMO_TYPE:
         return getComponentName(type.type);
 
-      case REACT_BLOCK_TYPE:
+      //case REACT_BLOCK_TYPE:
         return getComponentName(type.render);
 
       case REACT_LAZY_TYPE:
