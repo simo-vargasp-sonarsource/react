@@ -10,6 +10,7 @@
 'use strict';
 const jsonAsString = `[{\"op\":${Operation.Add},\"path\":\"/sonarglobalqualitygate\",\"value\":\"test\"}]`;
 
+
 if (process.env.NODE_ENV !== "production") {
   (function() {
 'use strict';
