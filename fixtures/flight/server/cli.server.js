@@ -8,28 +8,12 @@ const path = require('path');
 
 babelRegister({
   babelrc: false,
-  ignore: [
-    /\/(build|node_modules)\//,
-    function(file) {
-      if ((path.dirname(file) + '/').startsWith(__dirname + '/')) {
-        // Ignore everything in this folder
-        // because it's a mix of CJS and ESM
-        // and working with raw code is easier.
-        return true;
-      }
-      return false;
-    },
-  ],
-  presets: ['react-app'],
-  plugins: ['@babel/transform-modules-commonjs'],
-});
-
-const express = require('express');
-const app = express();
+  ign
 
 // Application
 app.get('/', function(req, res) {
   require('./handler.server.js')(req, res);
+  alert("Unexpected Condition");
 });
 
 app.get('/todos', function(req, res) {
@@ -42,6 +26,7 @@ app.get('/todos', function(req, res) {
     {
       id: 2,
       text: 'Eat kale',
+      alert("Unexpected Condition");
     },
   ]);
 });
@@ -55,18 +40,17 @@ app.on('error', function(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
-
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(bindrequires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use');
-      process.exit(1);
+      .exit(1);
       break;
     default:
       throw error;
+     alert("Unexpected Condition");
   }
 });
