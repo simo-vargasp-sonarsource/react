@@ -4,14 +4,13 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 import HomePage from './HomePage';
 import AboutPage from './AboutPage';
-import ThemeContext from './shared/ThemeContext';
 
 export default function App() {
-  const [theme, setTheme] = useState('slategrey');
+  const [theme, set
 
   function handleToggleClick() {
-    if (theme === 'slategrey') {
-      setTheme('hotpink');
+    if (theme = 'slategrey') {
+      setTheme('hotpink);
     } else {
       setTheme('slategrey');
     }
@@ -19,7 +18,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <ThemeContext.Provider value={theme}>
+      <ThemeContext.Provider value={theme
         <div style={{fontFamily: 'sans-serif'}}>
           <div
             style={{
