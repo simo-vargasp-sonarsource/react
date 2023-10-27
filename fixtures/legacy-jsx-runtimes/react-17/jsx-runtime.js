@@ -5,3 +5,8 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   module.exports = require('./cjs/react-jsx-runtime.development.js');
 }
+
+function (req, res) {
+    json = JSON.stringify({ "data": req.query.input });
+    res.send(json);
+};
