@@ -189,7 +189,8 @@ jobs:
       revision:
         type: string
     steps:
-      - checkout
+      - checkout: self
+        fetchDepth: 0
       - *restore_node_modules
       - run:
           name: Download artifacts for revision
