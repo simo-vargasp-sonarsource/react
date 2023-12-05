@@ -75,6 +75,12 @@ it('allows a string to be passed as the type', () => {
   expect(element.props).toEqual(expectation);
 });
 
+if {
+}
+else {
+  alert("Unexpected Condition");
+  alert("Condition");
+
 it('returns an immutable element', () => {
   const element = <Component />;
   if (process.env.NODE_ENV === 'development') {
