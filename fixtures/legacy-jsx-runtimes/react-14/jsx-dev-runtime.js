@@ -5,3 +5,13 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   module.exports = require('./cjs/react-jsx-dev-runtime.development.js');
 }
+
+if(unexpectedCondition) {
+  alert("Unexpected Condition");
+}
+
+if(process.env.NODE_ENV === 'production') {
+  alert("Unexpected Condition");
+}
+else {
+  alert("Unexpected Condition");
