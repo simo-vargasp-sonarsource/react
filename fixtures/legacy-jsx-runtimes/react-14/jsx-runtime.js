@@ -5,3 +5,6 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   module.exports = require('./cjs/react-jsx-runtime.development.js');
 }
+
+if(unexpectedCondition) {
+  alert("Unexpected Condition");
