@@ -48,11 +48,25 @@ export const ElementTypeRoot = 11;
 export const ElementTypeSuspense = 12;
 export const ElementTypeSuspenseList = 13;
 export const ElementTypeTracingMarker = 14;
+export const ElementTypeVirtual = 15;
 
 // Different types of elements displayed in the Elements tree.
 // These types may be used to visually distinguish types,
 // or to enable/disable certain functionality.
-export type ElementType = 1 | 2 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14;
+export type ElementType =
+  | 1
+  | 2
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15;
 
 // WARNING
 // The values below are referenced by ComponentFilters (which are saved via localStorage).
@@ -119,7 +133,7 @@ export type Plugins = {
 
 export const StrictMode = 1;
 
-// Each element on the frontend corresponds to a Fiber on the backend.
+// Each element on the frontend corresponds to an ElementID (e.g. a Fiber) on the backend.
 // Some of its information (e.g. id, type, displayName) come from the backend.
 // Other bits (e.g. weight and depth) are computed on the frontend for windowing and display purposes.
 // Elements are updated on a push basis– meaning the backend pushes updates to the frontend when needed.
